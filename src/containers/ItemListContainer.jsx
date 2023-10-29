@@ -47,43 +47,4 @@ const ItemListContainer = () => {
   );
 };
 
-// SIN FIRESTORE
-// useEffect(()=> {
-//     if(categoriaId){
-//         getProducts// funcion que simula una api
-//         // .then(resp =>{
-//         //     //throw new Error('ESto es un error')//instanciando un error
-//         //     console.log(resp)
-//         //     return resp
-//         // })
-
-//         .then(resp => setproductos(resp.filter (item => item.categoria === categoriaId)) )
-//         .catch(err => console.log(err))
-//         .finally(()=>setLoading(false))
-//     }else{
-//         getProducts// funcion que simula una api
-//         // .then(resp =>{
-//         //     //throw new Error('ESto es un error')//instanciando un error
-//         //     console.log(resp)
-//         //     return resp
-//         // })
-
-//         .then(resp => setproductos(resp))
-//         .catch(err => console.log(err))
-//         .finally(()=>setLoading(false))
-//     }
-// }, [categoriaId]);
-// const getProductsFromDB = async () => {
-//     try {
-//         const result = await getProducts;
-//         setproductos(result);
-//     }catch(error){
-//         console.log(error);
-//         alert('No podemos mostrar los productos en este momento');
-//     }
-// };
-// useEffect( ()=>{
-//     getProductsFromDB()
-// }, [])
-
 export default ItemListContainer;

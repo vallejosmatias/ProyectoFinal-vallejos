@@ -52,9 +52,9 @@ const ItemDetail = ({ producto }) => {
         <div className="price-wrapper">
           <div className="group">
             <div className="price">${producto.precio}</div>
-            {/* <div className="discount">10%</div>  */}
+            
           </div>
-          {/* <div className="old-price">$250.00</div>  */}
+          
         </div>
         {exchange === "button-fw" ? (
           <div className="productActions">
