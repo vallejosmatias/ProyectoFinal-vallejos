@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState } from "react";
 import {
   addDoc,
   collection,
@@ -8,19 +8,19 @@ import {
   query,
   where,
   writeBatch,
-} from 'firebase/firestore';
-import AppContext from '../context/AppContext';
-import useForm from '../hooks/useForm';
-import { BiLoaderCircle } from 'react-icons/bi';
-import toast, { Toaster } from 'react-hot-toast';
-import '../styles/Form.scss';
+} from "firebase/firestore";
+import AppContext from "../context/AppContext";
+import useForm from "../hooks/useForm";
+import { BiLoaderCircle } from "react-icons/bi";
+import toast, { Toaster } from "react-hot-toast";
+import "../styles/Form.scss";
 
 const initialForm = {
-  name: '',
-  surname: '',
-  phone: '',
-  email: '',
-  emailr: '',
+  name: "",
+  surname: "",
+  phone: "",
+  email: "",
+  emailr: "",
 };
 const validationsForm = (form) => {
   let errors = {};
@@ -53,7 +53,7 @@ const validationsForm = (form) => {
     errorMessages.push(errors.email);
   }
   if (form.email !== form.emailr) {
-    errors.emailr = 'Los campos Email no coinciden';
+    errors.emailr = "Los campos Email no coinciden";
     errorMessages.push(errors.emailr);
   }
   if (!form.phone.trim()) {
@@ -65,7 +65,7 @@ const validationsForm = (form) => {
   }
 
   if (errorMessages.length > 0) {
-    toast.error(errorMessages.join('\n'));
+    toast.error(errorMessages.join("\n"));
   }
   return errors;
 };
@@ -87,8 +87,8 @@ const FinishBuying = () => {
     setTimeout(() => setResponse(false), 4000);
     toast.success(`Tu compra ${resp.id} fue realizada con éxito`);
     setTimeout(() => emptyCart(), 4500);
-    toast('¡Muchas gracias por tu compra!', {
-      icon: '👏',
+    toast("¡Muchas gracias por tu compra!", {
+      icon: "👏",
     });
   };
   // <-- GENERATE ORDER
@@ -108,7 +108,7 @@ const FinishBuying = () => {
     // Función auxiliar para manejar el éxito al crear una orden
     // creación de un documento
     const db = getFirestore();
-    const queryCollection = collection(db, 'orders');
+    const queryCollection = collection(db, "orders");
     await addDoc(queryCollection, order)
       .then((resp) => {
         handleOrderSuccess(resp);
@@ -128,12 +128,12 @@ const FinishBuying = () => {
   // ACTUALIZAR STOCK DE DIFERENTES PRODUCTOS
 
   const updateStock = async (state, db) => {
-    const queryCollectionStock = collection(db, 'productos');
+    const queryCollectionStock = collection(db, "productos");
     const queryUpdateStock = await query(
       queryCollectionStock,
       where(
         documentId(),
-        'in',
+        "in",
         state.map((it) => it.id)
       )
     );
@@ -153,84 +153,84 @@ const FinishBuying = () => {
   // GENERATE ORDER -->
 
   return (
-    <section id='contact' className='contact'>
-      <Toaster position='bottom-center' reverseOrder={false} />
-      <div className='section-title'>
+    <section id="contact" className="contact">
+      <Toaster position="bottom-center" reverseOrder={false} />
+      <div className="section-title">
         <h2>Información del comprador</h2>
       </div>
-      <div className='container'>
-        <form onSubmit={generateOrder} className='contactForm'>
-          <div className='form-container'>
+      <div className="container">
+        <form onSubmit={generateOrder} className="contactForm">
+          <div className="form-container">
             <input
-              type='text'
-              name='name'
-              className='form-input'
-              placeholder='Nombre(s) *'
+              type="text"
+              name="name"
+              className="form-input"
+              placeholder="Nombre(s) *"
               onChange={handleChange}
               onBlur={handleBlur}
               value={form.name}
               required
             />
           </div>
-          <div className='form-container'>
+          <div className="form-container">
             <input
-              type='text'
-              name='surname'
-              className='form-input'
-              placeholder='Apellido(s) *'
+              type="text"
+              name="surname"
+              className="form-input"
+              placeholder="Apellido(s) *"
               onChange={handleChange}
               onBlur={handleBlur}
               value={form.surname}
               required
             />
           </div>
-          <div className='form-container'>
+          <div className="form-container">
             <input
-              type='tel'
-              className='form-input'
-              name='phone'
-              placeholder='Celular *'
+              type="tel"
+              className="form-input"
+              name="phone"
+              placeholder="Celular *"
               onChange={handleChange}
               onBlur={handleBlur}
               value={form.phone}
               required
             />
           </div>
-          <div className='form-container'>
+          <div className="form-container">
             <input
-              type='email'
-              className='form-input'
-              name='email'
-              placeholder='Email *'
+              type="email"
+              className="form-input"
+              name="email"
+              placeholder="Email *"
               onChange={handleChange}
               onBlur={handleBlur}
               value={form.email}
               required
             />
           </div>
-          <div className='form-container'>
+          <div className="form-container">
             <input
-              type='email'
-              className='form-input'
-              name='emailr'
-              placeholder='Confirm Email *'
+              type="email"
+              className="form-input"
+              name="emailr"
+              placeholder="Confirm Email *"
               onChange={handleChange}
               onBlur={handleBlur}
               value={form.emailr}
               required
             />
           </div>
-          <span className='spanForm'>
+          <span className="spanForm">
             Usaremos tus datos para informarte sobre la entrega.
           </span>
           <button
-            className='button-fw'
+            className="button-fw"
             disabled={loading || Object.keys(errors).length > 0}
           >
             {loading && <BiLoaderCircle />} Terminar mi compra
           </button>
         </form>
-        {response && <Toaster position='bottom-center' />}
+        {response && <Toaster position="bottom-center" />}
       </div>
     </section>
   );

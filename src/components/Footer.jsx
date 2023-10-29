@@ -6,13 +6,13 @@ const Footer = () => {
       <p className='copy-footer'>
         2023 &#169;{' '}
         <a
-          href='https://www.linkedin.com/in/morelalejandro/'
+          href='https://www.linkedin.com/in/matias-vallejos-a10902260/'
           target='_blank'
           rel='noreferrer'
           className='linkedin-url'
         >
           {' '}
-          Alejandro Morel
+          Matias Vallejos
         </a>
         . All right reserved.
       </p>

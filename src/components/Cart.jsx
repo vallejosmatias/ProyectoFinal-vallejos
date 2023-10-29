@@ -15,7 +15,9 @@ const Cart = () => {
       ></BiShoppingBag>
 
       {totalItemQuantity() !== 0 && (
-        <div className="count">{totalItemQuantity()}</div>
+        <div className="count">
+          {totalItemQuantity()}
+        </div>
       )}
       {toggleOrders && <MyOrders />}
     </>
